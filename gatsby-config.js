@@ -1,8 +1,9 @@
 module.exports = {
   siteMetadata: {
-    title: 'Gatsby Default Starter',
+    title: 'Pandas eating lots',
   },
   plugins: [
+    `gatsby-plugin-emotion`,
     'gatsby-plugin-react-helmet',
     {
       resolve: 'gatsby-plugin-typography',

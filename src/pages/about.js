@@ -1,15 +1,27 @@
 import React from  'react';
+import { graphql } from 'gatsby';
+
 import HeaderCustom from '../components/header-custom';
 import Layout from '../components/layout-custom';
 
-export default () => (
+export default ({ data }) => (
   <Layout>
-    <div style={{color: 'teal'}}>
-      <HeaderCustom headerText={"Everybody's singing lalalalalala"} />
-      <HeaderCustom headerText={"Weeeee"} />
-      <p>Such wow. Very React.</p>
-      <h1>About me</h1>
-      <p>I’m good enough, I’m smart enough, and gosh darn it, people like me!</p>
+    <div>
+      <HeaderCustom headerText={data.site.siteMetadata.title} />
+      <h1>About Pandas Eating Lots</h1>
+      <p>
+        We're the only site running on your computer dedicated to showing the best
+        photos and videos of pandas eating lots of food.
+      </p>
     </div>
   </Layout>
 )
+
+export const query = graphql`
+  query {
+    site {
+      siteMetadata {
+        title
+      }
+    }
+   }`;

@@ -1,5 +1,8 @@
-import React from 'react'
-import { Link } from 'gatsby'
+import React from 'react';
+import { css } from 'react-emotion';
+import { StaticQuery, Link, graphql } from "gatsby"
+
+import { rhythm } from '../utils/typography';
 
 const ListLink = props => (
   <li style={{ display: `inline-block`, marginRight: `1rem` }}>
@@ -30,9 +33,9 @@ class SiteTop extends React.Component {
   }
 
   listGen() {
-    return this.state.navItems.map(item => {
+    return this.state.navItems.map((item, index) => {
       return (
-        <li key={item.id}>
+        <li key={index}>
           <Link to={item.link}> {item.title}</Link>
         </li>
       )
@@ -68,19 +71,41 @@ class Footer extends React.Component {
 }
 
 export default ({ children }) => (
-  <div style={{ margin: `0 auto`, maxWidth: 650, padding: `1.25rem 1 rem` }}>
-    <SiteTop label="Fuck you!" />
-    <header style={{ marginBottom: `1.5em` }}>
-      <Link to="/" style={{ textShadow: `none`, backgroundImage: `none` }}>
-        <h3 style={{ display: `inline` }}>MySweetSite</h3>
-      </Link>
-      <ul style={{ listStyle: `none`, float: `right` }}>
-        <ListLink to="/">Home</ListLink>
-        <ListLink to="/about">About</ListLink>
-        <ListLink to="/contact">Contact</ListLink>
-      </ul>
-    </header>
-    {children}
-    <Footer/>
-  </div>
+  <StaticQuery query={graphql`
+  query {
+    site{
+      siteMetadata {
+        title
+      }
+    }
+   }`
+  }
+
+    render={ data => (
+    <div className={css`
+      margin: 0 auto;
+      max-width: 700px;
+      padding: ${rhythm(2)};
+      padding-top: ${rhythm(1.5)}
+      `}>
+      <SiteTop label="Welcome!" />
+        <Link to={'/'}>
+          <h3
+            className={css`
+              margin-bottom: ${rhythm(2)};
+              display: inline-block;
+              font-style: normal;
+              `}>{data.site.siteMetadata.title}</h3>
+        </Link>
+        <Link to={`/about`}
+              className={css`
+              float: right;
+              `}>
+          About
+        </Link>
+      {children}
+      <Footer/>
+    </div>
+    )}
+  />
 )

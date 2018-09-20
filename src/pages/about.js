@@ -18,10 +18,11 @@ export default ({ data }) => (
 )
 
 export const query = graphql`
-  query {
-    site {
-      siteMetadata {
-        title
-      }
-    }
-   }`;
+         query {
+           site {
+             siteMetadata {
+               title
+             }
+           }
+         }
+       `

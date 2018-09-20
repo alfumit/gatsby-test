@@ -6,6 +6,13 @@ module.exports = {
     `gatsby-plugin-emotion`,
     'gatsby-plugin-react-helmet',
     {
+      resolve: 'gatsby-source-filesystem',
+      options: {
+        name: 'src',
+        path: `${__dirname}/src/`,
+      }
+    },
+    {
       resolve: 'gatsby-plugin-typography',
       options: {
         pathConfigModule: 'src/utils/typography.js',
@@ -14,8 +21,8 @@ module.exports = {
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
-        name: 'gatsby-starter-default',
-        short_name: 'starter',
+        name: 'gatsby-tutorial',
+        short_name: 'gatut',
         start_url: '/',
         background_color: '#663399',
         theme_color: '#663399',

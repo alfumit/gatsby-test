@@ -1,6 +1,6 @@
 import React from 'react'
 
-import Layout from '../components/layout-custom';
+import Layout from '../components/layout-custom'
 
 const IndexPage = () => (
   <Layout>

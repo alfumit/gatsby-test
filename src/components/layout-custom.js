@@ -1,8 +1,8 @@
-import React from 'react';
-import { css } from 'react-emotion';
-import { StaticQuery, Link, graphql } from "gatsby"
+import React from 'react'
+import { css } from 'react-emotion'
+import { StaticQuery, Link, graphql } from 'gatsby'
 
-import { rhythm } from '../utils/typography';
+import { rhythm } from '../utils/typography'
 
 const ListLink = props => (
   <li style={{ display: `inline-block`, marginRight: `1rem` }}>
@@ -59,53 +59,58 @@ class SiteTop extends React.Component {
 }
 
 class Footer extends React.Component {
-
   render() {
     return (
       <footer>
-        <span>Created by creator</span> |
-        <span>Copyright 2018</span>
+        <span>Created by creator</span> |<span>Copyright 2018</span>
       </footer>
     )
   }
 }
 
 export default ({ children }) => (
-  <StaticQuery query={graphql`
-  query {
-    site{
-      siteMetadata {
-        title
+  <StaticQuery
+    query={graphql`
+      query {
+        site {
+          siteMetadata {
+            title
+          }
+        }
       }
-    }
-   }`
-  }
-
-    render={ data => (
-    <div className={css`
-      margin: 0 auto;
-      max-width: 700px;
-      padding: ${rhythm(2)};
-      padding-top: ${rhythm(1.5)}
-      `}>
-      <SiteTop label="Welcome!" />
+    `}
+    render={data => (
+      <div
+        className={css`
+          margin: 0 auto;
+          max-width: 700px;
+          padding: ${rhythm(2)};
+          padding-top: ${rhythm(1.5)};
+        `}
+      >
+        <SiteTop label="Welcome!" />
         <Link to={'/'}>
           <h3
             className={css`
               margin-bottom: ${rhythm(2)};
               display: inline-block;
               font-style: normal;
-              `}>{data.site.siteMetadata.title}</h3>
+            `}
+          >
+            {data.site.siteMetadata.title}
+          </h3>
         </Link>
-        <Link to={`/about`}
-              className={css`
-              float: right;
-              `}>
+        <Link
+          to={`/about`}
+          className={css`
+            float: right;
+          `}
+        >
           About
         </Link>
-      {children}
-      <Footer/>
-    </div>
+        {children}
+        <Footer />
+      </div>
     )}
   />
 )

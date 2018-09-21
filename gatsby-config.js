@@ -7,6 +7,8 @@ module.exports = {
     `gatsby-plugin-emotion`,
     `gatsby-transformer-remark`,
     'gatsby-plugin-react-helmet',
+    `gatsby-plugin-sharp`,
+    `gatsby-transformer-sharp`,
     {
       resolve: 'gatsby-source-filesystem',
       options: {
@@ -32,6 +34,35 @@ module.exports = {
         icon: 'src/images/gatsby-icon.png', // This path is relative to the root of the site.
       },
     },
+    // {
+    //   resolve: 'gatsby-source-github',
+    //   options: {
+    //     headers: {
+    //       Authorization: `Bearer fd24f37a5b2269be0a4bb37a740e044c47d251a8`,
+    //     },
+    //     queries: [
+    //       `{
+    //       repository(owner: "alfumit", name: "") {
+    //         issues(last: 20, states: OPEN) {
+    //           edges {
+    //             node {
+    //               id
+    //               author {
+    //                 avatarUrl
+    //                 login
+    //                 url
+    //               }
+    //               bodyHTML
+    //               title
+    //               url
+    //             }
+    //           }
+    //         }
+    //       }
+    //     }`,
+    //     ],
+    //   }
+    // },
     'gatsby-plugin-offline',
   ],
 }

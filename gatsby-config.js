@@ -2,6 +2,7 @@ module.exports = {
   siteMetadata: {
     title: 'Pandas eating lots',
   },
+  pathPrefix: `/gatsby-test`,
   plugins: [
     `gatsby-plugin-emotion`,
     `gatsby-transformer-remark`,

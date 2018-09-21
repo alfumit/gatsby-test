@@ -1,13 +1,11 @@
 import React from 'react'
-import { graphql } from 'gatsby'
+import { graphql, Link } from 'gatsby'
 import { css } from 'react-emotion'
 import { rhythm } from '../utils/typography'
 
 import Layout from '../components/layout-custom'
 
 const IndexPage = ({ data }) => {
-  console.log(data)
-
   return (
     <Layout>
       <div>
@@ -20,6 +18,12 @@ const IndexPage = ({ data }) => {
         <h4>{data.allMarkdownRemark.totalCount} Posts</h4>
         {data.allMarkdownRemark.edges.map(({ node }) => (
           <div key={node.id}>
+            <Link
+              to={node.fields.slug}
+              className={css`
+                text-decoration: none;
+                color: inherit;
+              `}>
             <h3 className={css`
               margin-bottom: ${rhythm(1 / 4)}
             `}>
@@ -31,6 +35,7 @@ const IndexPage = ({ data }) => {
               </span>
             </h3>
             <p>{node.excerpt}</p>
+            </Link>
           </div>
         ))}
       </div>
@@ -50,6 +55,9 @@ export const query = graphql`
           frontmatter {
             title
             date(formatString: "DD MMMM, YYYY")
+          }
+          fields {
+            slug
           }
           excerpt
           html

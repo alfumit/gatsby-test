@@ -117,6 +117,7 @@ export default ({ children }) => (
         </Link>
         {children}
         <Footer />
+      <script src="https://checkout.stripe.com/checkout.js" />
       </div>
     )}
   />

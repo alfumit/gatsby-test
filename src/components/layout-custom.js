@@ -29,6 +29,10 @@ class SiteTop extends React.Component {
           title: 'Home',
           link: '/',
         },
+        {
+          title: 'Don\'t let \'em die',
+          link: '/cart-checkout'
+        }
       ],
     }
   }
@@ -92,7 +96,7 @@ export default ({ children }) => (
         <Helmet>
           <meta charSet="utf-8" />
           <meta description="A test site about Pandas"/>
-          <title>data.site.siteMetadata.title</title>
+          <title>{data.site.siteMetadata.title}</title>
           <link rel="canonical" href="/" />
         </Helmet>
         <SiteTop label="Welcome!" />
@@ -106,14 +110,6 @@ export default ({ children }) => (
           >
             {data.site.siteMetadata.title}
           </h3>
-        </Link>
-        <Link
-          to={`/about`}
-          className={css`
-            float: right;
-          `}
-        >
-          About
         </Link>
         {children}
         <Footer />

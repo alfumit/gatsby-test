@@ -28,11 +28,11 @@ const Checkout = class extends React.Component {
   state = {
     disabled: false,
     buttonText: 'KOP NO',
-    paymentMessage: 'Pay now or suffer the consequences',
+    paymentMessage: 'Pay or Pandas die',
   }
 
   resetButton() {
-    this.setState({ disbled: false, buttonText: 'KOP NO' })
+    this.setState({ disabled: false, buttonText: 'KOP NO' })
   }
 
   componentDidMount() {
@@ -52,7 +52,7 @@ const Checkout = class extends React.Component {
       amount: amount,
       description: 'Super product',
       token: token => {
-        fetch('AWS_LAMBDA_URL', {
+        fetch('https://kcfohzbz66.execute-api.us-east-1.amazonaws.com/dev/checkout', {
           method: 'POST',
           body: JSON.stringify({
             token,
@@ -80,7 +80,7 @@ const Checkout = class extends React.Component {
   render() {
     return (
       <div style={cardStyles}>
-        <h4>Spend Your Money!</h4>
+        <h4>It will be your fault, if Pandas die of hunger!</h4>
         <p>
           Use any email, 4242 4242 4242 4242 as the credit card number, any 3
           digit number, and any future date of expiration.

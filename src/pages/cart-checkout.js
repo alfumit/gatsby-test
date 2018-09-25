@@ -6,7 +6,7 @@ import { graphql } from 'gatsby'
 export default () => {
   return (
     <Layout>
-      <h1>A cart checkout page</h1>
+      <h1>Pandas' eating costs</h1>
       <Checkout />
     </Layout>
   )

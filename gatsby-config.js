@@ -11,6 +11,13 @@ module.exports = {
     `gatsby-transformer-sharp`,
     `gatsby-plugin-stripe-checkout`,
     {
+      resolve: `gatsby-source-pixabay`,
+      options: {
+        key: "10222764-9ac520d2ea9a2bd00c315423d",
+        q: "yellow flowers",
+      },
+    },
+    {
       resolve: 'gatsby-source-filesystem',
       options: {
         name: 'src',

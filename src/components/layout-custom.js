@@ -3,6 +3,8 @@ import { css } from 'react-emotion'
 import { Helmet } from 'react-helmet'
 import { StaticQuery, Link, graphql } from 'gatsby'
 
+import Container from './container/container';
+
 import { rhythm } from '../utils/typography'
 
 const ListLink = props => (
@@ -113,6 +115,7 @@ export default ({ children }) => (
         </Link>
         {children}
         <Footer />
+      <Container/>
       <script src="https://checkout.stripe.com/checkout.js" />
       </div>
     )}

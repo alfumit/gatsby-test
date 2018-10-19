@@ -1,79 +1,45 @@
 import React from 'react'
 import { css } from 'react-emotion'
 import { Helmet } from 'react-helmet'
+import { createStore } from 'redux'
+import { Provider } from 'react-redux'
 import { StaticQuery, Link, graphql } from 'gatsby'
 
-import Container from './container/container';
+import { SiteTop } from './layout-components/SiteTop/SiteTop'
+import { Footer } from './layout-components/Footer/Footer'
+import Container from './container/container'
 
 import { rhythm } from '../utils/typography'
+
+const initialState = {
+  num: 0,
+  itemList: [],
+}
+const mathReducer = (state = initialState, action) => {
+  switch (action.type) {
+    case 'ADD':
+      state = {
+        ...state,
+        num: state.num + action.payload,
+      }
+      break
+    case 'SUB':
+      state = {
+        ...state,
+        num: state.num - action.payload,
+      }
+      break
+  }
+  console.log('REDUCER WORKED', state)
+  return state
+}
+const globalStore = createStore(mathReducer)
 
 const ListLink = props => (
   <li style={{ display: `inline-block`, marginRight: `1rem` }}>
     <Link to={props.to}>{props.children}</Link>
   </li>
 )
-
-class SiteTop extends React.Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      label: 'Solutions For:',
-      navItems: [
-        {
-          title: 'About',
-          link: '/about',
-        },
-        {
-          title: 'Contact',
-          link: '/contact',
-        },
-        {
-          title: 'Home',
-          link: '/',
-        },
-        {
-          title: 'Don\'t let \'em die',
-          link: '/cart-checkout'
-        }
-      ],
-    }
-  }
-
-  listGen() {
-    return this.state.navItems.map((item, index) => {
-      return (
-        <li key={index}>
-          <Link to={item.link}> {item.title}</Link>
-        </li>
-      )
-    })
-  }
-
-  render() {
-    return (
-      <div id="site-top" className="site-top">
-        <div className="container">
-          <nav className="site-nav">
-            <div className="label">
-              <p>{this.props.label}</p>
-            </div>
-            <ul className="site-selector">{this.listGen()}</ul>
-          </nav>
-        </div>
-      </div>
-    )
-  }
-}
-
-class Footer extends React.Component {
-  render() {
-    return (
-      <footer>
-        <span>Created by creator</span> |<span>Copyright 2018</span>
-      </footer>
-    )
-  }
-}
 
 export default ({ children }) => (
   <StaticQuery
@@ -95,28 +61,32 @@ export default ({ children }) => (
           padding-top: ${rhythm(1.5)};
         `}
       >
-        <Helmet>
-          <meta charSet="utf-8" />
-          <meta description="A test site about Pandas"/>
-          <title>{data.site.siteMetadata.title}</title>
-          <link rel="canonical" href="/" />
-        </Helmet>
-        <SiteTop label="Welcome!" />
-        <Link to={'/'}>
-          <h3
-            className={css`
-              margin-bottom: ${rhythm(2)};
-              display: inline-block;
-              font-style: normal;
-            `}
-          >
-            {data.site.siteMetadata.title}
-          </h3>
-        </Link>
-        {children}
-        <Footer />
-      <Container/>
-      <script src="https://checkout.stripe.com/checkout.js" />
+        <Provider store={globalStore}>
+          <React.Fragment>
+            <Helmet>
+              <meta charSet="utf-8" />
+              <meta description="A test site about Pandas" />
+              <title>{data.site.siteMetadata.title}</title>
+              <link rel="canonical" href="/" />
+            </Helmet>
+            <SiteTop label="Welcome!" />
+            <Link to={'/'}>
+              <h3
+                className={css`
+                  margin-bottom: ${rhythm(2)};
+                  display: inline-block;
+                  font-style: normal;
+                `}
+              >
+                {data.site.siteMetadata.title}
+              </h3>
+            </Link>
+            {children}
+            <Footer />
+            <Container />
+            <script src="https://checkout.stripe.com/checkout.js" />
+          </React.Fragment>
+        </Provider>
       </div>
     )}
   />

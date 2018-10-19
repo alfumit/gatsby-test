@@ -1,9 +1,9 @@
-const crypto = require('crypto')
-const fetch = require('node-fetch')
-const queryString = require('query-string')
+// const crypto = require('crypto')
+// const fetch = require('node-fetch')
+// const queryString = require('query-string')
 
 exports.sourceNodes = ({ actions, createNodeId }, configOptions) => {
-  const createNode = actions
+  const createNode = actions;
   delete configOptions.plugins
   console.log('Testing ma plug', configOptions)
 

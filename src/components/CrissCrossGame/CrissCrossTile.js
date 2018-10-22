@@ -8,11 +8,14 @@ export default class CrissCrossTile extends React.Component {
   }
   
   markTile() {
+    let ctx = 'O';
     this.setState({value: 'O'})
     
     if(this.props.clicker) {
-      this.setState({value: this.porops.clicker})
+      this.setState({value: this.props.clicker})
     }
+  
+    this.props.updateField({tileX: this.props.tileX, tileY: this.props.tileY, value: ctx})
   }
   
   render() {
@@ -37,3 +40,4 @@ export default class CrissCrossTile extends React.Component {
     )
   }
 }
+

@@ -9,7 +9,6 @@ const fieldGen = (fieldSize = 3) => {
   for(let i = 0; i < fieldSize; i++) {
     for(let j = 0; j < fieldSize; j++) {
       res.push({tileX: j, tileY: i, value: '', fieldSize})
-      // res.push(<CrissCrossTile key={`${i} ${j}`} tileX={i} tileY={j} fieldSize={fieldSize}/>)
     }
   }
   return res;
@@ -23,6 +22,7 @@ class CrissCrossField extends React.Component {
   
   componentWillMount() {
     this.state.field = fieldGen();
+    this.props.generateBoard(this.state.field);
   }
   
   render() {
@@ -32,7 +32,13 @@ class CrissCrossField extends React.Component {
         list-style-type: none
         `}>
           {this.state.field.map((item) => (
-            <CrissCrossTile key={`${item.tileX} ${item.tileY}`} tileX={item.tileX} tileY={item.tileY} fieldSize={item.fieldSize}/>
+            <CrissCrossTile
+              key={`${item.tileX} ${item.tileY}`}
+              tileX={item.tileX}
+              tileY={item.tileY}
+              fieldSize={item.fieldSize}
+              updateField = {this.props.updateField.bind(this)}
+            />
           ))}
         </ul>
       </div>
@@ -41,17 +47,21 @@ class CrissCrossField extends React.Component {
 }
 
 const mapStateToProps = state => {
-  return {
-    field: state.crissCrossField
-  }
+  return {}
 }
 
 const mapDispatchToProps = dispatch => {
   return {
-    generateField: () => {
+    generateBoard: (board) => {
       dispatch({
-        type: 'GENERATE_FIELD',
-        payload: this.state.field
+        type: 'GENERATE_BOARD',
+        payload: board
+      })
+    },
+    updateField: (fieldRecord) => {
+      dispatch({
+        type: 'UPDATE_FIELD',
+        payload: fieldRecord
       })
     }
   }

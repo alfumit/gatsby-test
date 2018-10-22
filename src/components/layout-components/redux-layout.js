@@ -12,12 +12,44 @@ import { rhythm } from '../../utils/typography'
 
 const initialState = {
   gameOn: false,
+  gameOver: undefined,
   sitelet: 'redux-works',
   num: 0,
   itemList: [],
   generalData: [],
   crissCrossField: []
 }
+
+const winAnalyzer = (board) => {
+  let res = {status: 'continue', winner: undefined};
+  const boardSize = board[0].fieldSize;
+  const middle = Math.floor( boardSize / 2);
+  
+  let horizontalLine = '', verticalLine = '', mainDiagonal = '', secondaryDiagonal = '';
+  board.forEach((item) => {
+    if(item.tileY === middle) {
+      horizontalLine += item.value;
+    }
+    if(item.tileX === middle) {
+      verticalLine += item.value;
+    }
+    if(item.tileX === item.tileY) {
+      mainDiagonal += item.value;
+    }
+    if(boardSize - 1 - item.tileX ===  item.tileY) {
+      secondaryDiagonal += item.value
+    }
+    
+  })
+  
+  if(horizontalLine.length === 3) res = {status: 'win', winner: 'O'}
+  if(verticalLine.length === 3) res = {status: 'win', winner: 'O'}
+  if(mainDiagonal.length === 3) res = {status: 'win', winner: 'O'}
+  if(secondaryDiagonal.length === 3) res = {status: 'win', winner: 'O'}
+  
+  return res;
+}
+
 const mathReducer = (state = initialState, action) => {
   switch (action.type) {
     case 'ADD':
@@ -45,6 +77,42 @@ const mathReducer = (state = initialState, action) => {
         gameOn: true
       }
       break
+    case 'END_GAME':
+      state = {
+        ...state,
+        gameOver: {
+          winner: 'O'
+        }
+      }
+      break
+    case 'GENERATE_BOARD':
+      state = {
+        ...state,
+        crissCrossField: action.payload
+      }
+      break
+    case 'UPDATE_FIELD':
+      const tileX = action.payload.tileX;
+      const tileY = action.payload.tileY;
+      const value = action.payload.value;
+      const newBoard = state.crissCrossField.slice();
+      
+      const field = newBoard.find((item)=> item.tileX === tileX && item.tileY === tileY);
+      field.value = value;
+
+      console.log(state.crissCrossField);
+      const analysis = winAnalyzer(newBoard);
+      if(analysis.status === 'win') {
+        state.gameOver = true;
+        state.winner = analysis.winner
+        alert(`Player ${state.winner} ${analysis.status}s`)
+      }
+      
+      state = {
+        ...state,
+        crissCrossField: newBoard
+      }
+      
   }
   return state
 }

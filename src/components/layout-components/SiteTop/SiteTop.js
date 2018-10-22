@@ -1,7 +1,8 @@
 import React from 'react'
 import { Link } from 'gatsby'
+import { connect } from 'react-redux'
 
-export class SiteTop extends React.Component {
+class SiteTop extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -43,7 +44,7 @@ export class SiteTop extends React.Component {
         <div className="container">
           <nav className="site-nav">
             <div className="label">
-              <p>{this.props.label}</p>
+              <p>{`${this.props.label} ${this.props.sitelet}`}</p>
             </div>
             <ul className="site-selector">{this.listGen()}</ul>
           </nav>
@@ -52,3 +53,14 @@ export class SiteTop extends React.Component {
     )
   }
 }
+
+const mapStateToProps = (state) => {
+ return {
+   sitelet: state.sitelet
+ }
+}
+const mapDispatchToProps = () => {
+  return {};
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(SiteTop);

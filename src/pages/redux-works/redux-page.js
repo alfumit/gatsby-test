@@ -1,6 +1,6 @@
 import React from 'react'
-import ReduxContainer from '../components/ReduxContainer'
-import Layout from '../components/layout-custom'
+import ReduxContainer from '../../components/ReduxContainer'
+import Layout from '../../components/layout-components/redux-layout'
 
 export default class ReduxPage extends React.PureComponent {
   state = {

@@ -2,7 +2,7 @@ import React from 'react'
 import { css } from 'react-emotion'
 import { connect } from 'react-redux'
 
-import CrissCrossTile from './CrissCrossTile';
+import TicTacToeTile from './TicTacToeTile';
 
 const fieldGen = (fieldSize = 3) => {
   let res = [];
@@ -14,7 +14,7 @@ const fieldGen = (fieldSize = 3) => {
   return res;
 }
 
-class CrissCrossField extends React.Component {
+class TicTactToeBoard extends React.Component {
   
   state = {
     field: []
@@ -32,7 +32,7 @@ class CrissCrossField extends React.Component {
         list-style-type: none
         `}>
           {this.state.field.map((item) => (
-            <CrissCrossTile
+            <TicTacToeTile
               key={`${item.tileX} ${item.tileY}`}
               tileX={item.tileX}
               tileY={item.tileY}
@@ -67,4 +67,4 @@ const mapDispatchToProps = dispatch => {
   }
 }
 
-export default connect(mapStateToProps,mapDispatchToProps)(CrissCrossField)
+export default connect(mapStateToProps,mapDispatchToProps)(TicTactToeBoard)

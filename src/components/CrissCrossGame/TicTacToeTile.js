@@ -1,21 +1,19 @@
 import React from 'react'
 import { css } from 'emotion'
 
-export default class CrissCrossTile extends React.Component {
+import { connect } from 'react-redux'
+
+class TicTacToeTile extends React.Component {
   state = {
-    value: '',
-    clicker: undefined
+    value: ''
   }
   
   markTile() {
-    let ctx = 'O';
-    this.setState({value: 'O'})
-    
-    if(this.props.clicker) {
-      this.setState({value: this.props.clicker})
+    if(this.props.currentPlayer) {
+      this.setState({value: this.props.currentPlayer})
     }
   
-    this.props.updateField({tileX: this.props.tileX, tileY: this.props.tileY, value: ctx})
+    this.props.updateField({tileX: this.props.tileX, tileY: this.props.tileY, value: this.props.currentPlayer})
   }
   
   render() {
@@ -41,3 +39,10 @@ export default class CrissCrossTile extends React.Component {
   }
 }
 
+const mapStateToProps = (state) => {
+  return {
+    currentPlayer: state.currentPlayer
+  }
+}
+
+export default connect(mapStateToProps)(TicTacToeTile)

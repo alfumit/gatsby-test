@@ -17,10 +17,10 @@ class TicTacToeContainer extends React.PureComponent {
   }
 }
 
-const mapStateToProps = (state) => {
+const mapStateToProps = state => {
   return {
-    gameOn: state.gameOn,
-    gameOver: state.gameOver
+    gameOn: state.TicTacToeReducer.gameOn,
+    gameOver: state.TicTacToeReducer.gameOver,
   }
 }
 

@@ -1,9 +1,9 @@
 import React from 'react'
 
 import Layout from '../../components/layout-components/redux-layout'
-import TicTacToeContainer from '../../components/CrissCrossGame/TicTacToeContainer'
+import TicTacToeContainer from '../../components/TicTacToeGame/TicTacToeContainer'
 
-class TicTacToe extends React.PureComponent {
+export default class TicTacToe extends React.PureComponent {
   render() {
     return (
       <Layout>
@@ -13,5 +13,3 @@ class TicTacToe extends React.PureComponent {
     )
   }
 }
-
-export default TicTacToe;

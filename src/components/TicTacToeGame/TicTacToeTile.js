@@ -41,7 +41,7 @@ class TicTacToeTile extends React.Component {
 
 const mapStateToProps = (state) => {
   return {
-    currentPlayer: state.currentPlayer
+    currentPlayer: state.TicTacToeReducer.currentPlayer
   }
 }
 

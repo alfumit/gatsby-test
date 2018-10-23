@@ -22,7 +22,7 @@ class ReduxContainer extends React.Component {
 
 const mapStateToProps = state => {
   return {
-    num: state.num
+    num: state.testReducer.num
   }
 }
 const mapDispatchToProps = dispatch => {

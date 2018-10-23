@@ -17,8 +17,8 @@ class TicTacToeFinish extends React.Component {
 
 const mapStateToProps = state => {
   return {
-    winner: state.winner,
-    status: state.status
+    winner: state.TicTacToeReducer.winner,
+    status: state.TicTacToeReducer.status
   }
 }
 

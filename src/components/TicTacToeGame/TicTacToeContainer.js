@@ -12,7 +12,6 @@ class TicTacToeContainer extends React.PureComponent {
     return (
       <div className={css`
           width: 500px;
-          height: 300px;
           margin: ${rhythm(1)} auto;
       `}>
         {!this.props.gameOn && <TicTacToeStarter />}

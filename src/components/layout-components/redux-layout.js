@@ -7,11 +7,12 @@ import { StaticQuery, Link, graphql } from 'gatsby'
 
 import TicTacToeReducer from '../../components/TicTacToeGame/Reducer/TicTacToeReducer'
 import TestReducer from '../TestReducer'
+import MatchCenter from '../../components/MatchCenter/Reducer/MatchCenterReducer'
 
 import { Footer } from './Footer/Footer'
 import { rhythm } from '../../utils/typography'
 
-const appReducer = combineReducers({TicTacToeReducer, TestReducer});
+const appReducer = combineReducers({TicTacToeReducer, TestReducer, MatchCenter});
 
 const globalStore = createStore(appReducer);
 

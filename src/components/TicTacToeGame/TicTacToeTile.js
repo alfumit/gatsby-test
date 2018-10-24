@@ -9,17 +9,17 @@ class TicTacToeTile extends React.Component {
   }
   
   markTile() {
-    if(this.props.currentPlayer) {
-      this.setState({value: this.props.currentPlayer})
+    if(this.state.value) {
+      console.log('Tile taken');
+      return;
     }
-  
+    
+    this.setState({value: this.props.currentPlayer})
     this.props.updateField({tileX: this.props.tileX, tileY: this.props.tileY, value: this.props.currentPlayer})
   }
   
   render() {
-    const tileX = this.props.tileX;
-    const tileY = this.props.tileY;
-    const fieldSize = this.props.fieldSize;
+    const { tileX } = this.props;
     return (
       <li onClick={() => this.markTile()} className={css`
       float: left;

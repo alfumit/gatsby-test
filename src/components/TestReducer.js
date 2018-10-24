@@ -4,7 +4,7 @@ const initialState = {
   itemList: [],
   generalData: [],
 }
-const testReducer = (state = initialState, action) => {
+const TestReducer = (state = initialState, action) => {
   switch (action.type) {
     case 'ADD':
       state = {
@@ -28,4 +28,4 @@ const testReducer = (state = initialState, action) => {
   return state
 }
 
-export default testReducer;
+export default TestReducer;

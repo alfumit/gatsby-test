@@ -1,14 +1,15 @@
 import React from 'react'
 import { css } from 'react-emotion'
 import { connect } from 'react-redux'
+import { rhythm } from '../../utils/typography'
 
 import TicTacToeTile from './TicTacToeTile';
 
-const fieldGen = (fieldSize = 3) => {
+const boardGen = (boardSize = 3) => {
   let res = [];
-  for(let i = 0; i < fieldSize; i++) {
-    for(let j = 0; j < fieldSize; j++) {
-      res.push({tileX: j, tileY: i, value: '', fieldSize})
+  for(let i = 0; i < boardSize; i++) {
+    for(let j = 0; j < boardSize; j++) {
+      res.push({tileX: j, tileY: i, value: ''})
     }
   }
   return res;
@@ -17,26 +18,28 @@ const fieldGen = (fieldSize = 3) => {
 class TicTactToeBoard extends React.Component {
   
   state = {
-    field: []
+    board: boardGen(this.props.boardSize)
   }
   
   componentWillMount() {
-    this.state.field = fieldGen();
-    this.props.generateBoard(this.state.field);
+    this.props.generateBoard(this.state.board);
   }
   
   render() {
     return (
-      <div>
+      <div className={css`
+        margin-top: ${rhythm(2)};
+      `}>
         <ul className={css`
-        list-style-type: none
+        list-style-type: none;
+        display: table;
+        margin: ${rhythm(1)} auto;
         `}>
-          {this.state.field.map((item) => (
+          {this.state.board.map((item) => (
             <TicTacToeTile
               key={`${item.tileX} ${item.tileY}`}
               tileX={item.tileX}
               tileY={item.tileY}
-              fieldSize={item.fieldSize}
               updateField = {this.props.updateField.bind(this)}
             />
           ))}
@@ -47,7 +50,9 @@ class TicTactToeBoard extends React.Component {
 }
 
 const mapStateToProps = state => {
-  return {}
+  return {
+    boardSize: state.TicTacToeReducer.boardSize
+  }
 }
 
 const mapDispatchToProps = dispatch => {

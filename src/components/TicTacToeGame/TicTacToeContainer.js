@@ -1,5 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
+import { css } from 'react-emotion'
+import { rhythm } from '../../utils/typography'
 
 import TicTacToeStarter from './TicTacToeStarter'
 import TicTactToeBoard from './TicTactToeBoard'
@@ -8,11 +10,15 @@ import TicTacToeFinish from './TicTacToeFinish'
 class TicTacToeContainer extends React.PureComponent {
   render() {
     return (
-      <React.Fragment>
+      <div className={css`
+          width: 500px;
+          height: 300px;
+          margin: ${rhythm(1)} auto;
+      `}>
         {!this.props.gameOn && <TicTacToeStarter />}
         {this.props.gameOn && !this.props.gameOver && <TicTactToeBoard />}
         {this.props.gameOver && <TicTacToeFinish />}
-      </React.Fragment>
+      </div>
     )
   }
 }

@@ -15,7 +15,7 @@ const initialState = {
   num: 0,
   itemList: [],
 }
-const mathReducer = (state = initialState, action) => {
+const MathReducer = (state = initialState, action) => {
   switch (action.type) {
     case 'ADD':
       state = {
@@ -33,13 +33,15 @@ const mathReducer = (state = initialState, action) => {
   console.log('REDUCER WORKED', state)
   return state
 }
-const globalStore = createStore(mathReducer)
+const globalStore = createStore(MathReducer)
 
+/*
 const ListLink = props => (
   <li style={{ display: `inline-block`, marginRight: `1rem` }}>
     <Link to={props.to}>{props.children}</Link>
   </li>
 )
+*/
 
 export default ({ children }) => (
   <StaticQuery

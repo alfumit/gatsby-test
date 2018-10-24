@@ -14,7 +14,8 @@ module.exports = {
       resolve: `gatsby-source-pixabay`,
       options: {
         key: "10222764-9ac520d2ea9a2bd00c315423d",
-        q: "yellow flowers",
+        q: "modern city",
+        colors: 'black, blue'
       },
     },
     {

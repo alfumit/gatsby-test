@@ -6,12 +6,12 @@ import { Provider } from 'react-redux'
 import { StaticQuery, Link, graphql } from 'gatsby'
 
 import TicTacToeReducer from '../../components/TicTacToeGame/Reducer/TicTacToeReducer'
-import testReducer from '../testReducer'
+import TestReducer from '../TestReducer'
 
 import { Footer } from './Footer/Footer'
 import { rhythm } from '../../utils/typography'
 
-const appReducer = combineReducers({TicTacToeReducer, testReducer});
+const appReducer = combineReducers({TicTacToeReducer, TestReducer});
 
 const globalStore = createStore(appReducer);
 

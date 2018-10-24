@@ -5,16 +5,17 @@ const initialState = {
   winner: undefined,
   status: 'continue',
   currentPlayer: 'X',
+  boardSize: 3,
   crissCrossField: [],
 }
 
-const getWinningLines = board => {
+const getWinningLines = (board, boardSize) => {
   /*Collecting each line and diagonal*/
   let mainDiagonal = '',
     secondaryDiagonal = '',
     horizontalLines = [],
-    verticalLines = []
-  const boardSize = board[0].fieldSize
+    verticalLines = [];
+  
   board.forEach(item => {
     for (let i = 0; i < boardSize; i++) {
       if (!horizontalLines[i]) horizontalLines[i] = ''
@@ -36,18 +37,18 @@ const getWinningLines = board => {
   return { horizontalLines, verticalLines, mainDiagonal, secondaryDiagonal }
 }
 
-const winAnalyzer = (board, currentPlayer) => {
+const winAnalyzer = (board, currentPlayer, boardSize) => {
   let res = { status: 'continue', winner: undefined }
-  const boardSize = board[0].fieldSize
   const {
     horizontalLines,
     verticalLines,
     secondaryDiagonal,
     mainDiagonal,
-  } = getWinningLines(board)
+  } = getWinningLines(board, boardSize)
+  
 
   /*Checking each line and diagonal for a winner */
-  const testRegex = new RegExp(`\[^${currentPlayer}\]`)
+  const testRegex = new RegExp(`[^${currentPlayer}]`)
   for (let i = 0; i < boardSize; i++) {
     const horizontalLine = horizontalLines[i]
     const verticalLine = verticalLines[i]
@@ -81,6 +82,12 @@ const TicTacToeReducer = (state = initialState, action) => {
         gameOn: true,
       }
       break
+    case 'SET_BOARD_SIZE':
+      state = {
+        ...state,
+        boardSize: action.payload
+      }
+      break
     case 'GENERATE_BOARD':
       state = {
         ...state,
@@ -96,7 +103,7 @@ const TicTacToeReducer = (state = initialState, action) => {
       )
       field.value = value
 
-      const analysis = winAnalyzer(newBoard, state.currentPlayer)
+      const analysis = winAnalyzer(newBoard, state.currentPlayer, state.boardSize)
       if (analysis.status !== 'continue') {
         state.gameOver = true
         state.winner = analysis.winner

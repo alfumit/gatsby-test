@@ -3,8 +3,7 @@ import { css } from 'react-emotion';
 import { rhythm } from '../../utils/typography'
 
 import Layout from '../../components/layout-components/redux-layout'
-import GamesList from '../../components/MatchCenter/GamesList'
-
+import MatchCenterContainer from '../../components/MatchCenter/MatchCenterContainer'
 
 class MatchCenter extends React.PureComponent {
   
@@ -15,7 +14,7 @@ class MatchCenter extends React.PureComponent {
         margin: ${rhythm(1)} auto;
         `}>
           <h1>Match Center</h1>
-          <GamesList />
+          <MatchCenterContainer />
         </div>
       </Layout>
     )

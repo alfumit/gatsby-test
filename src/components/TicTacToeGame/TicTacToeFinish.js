@@ -4,6 +4,8 @@ import { connect } from 'react-redux'
 import { graphql, StaticQuery } from 'gatsby'
 import { rhythm } from '../../utils/typography'
 
+import { startOver } from './actions/TicTacToeActions'
+
 class TicTacToeFinish extends React.Component {
   render() {
     return (
@@ -26,6 +28,7 @@ class TicTacToeFinish extends React.Component {
               width: 100%;
               height: 300px;
               margin: ${rhythm(1)} auto;
+              background-color: black;
               background-image: url(${finalImage});
               background-size: cover;
               color: white;
@@ -57,9 +60,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     startOver: () => {
-      dispatch({
-        type: 'START_OVER',
-      })
+      dispatch(startOver())
     },
   }
 }

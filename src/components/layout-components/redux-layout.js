@@ -1,20 +1,13 @@
 import React from 'react'
 import { css } from 'react-emotion'
 import { Helmet } from 'react-helmet'
-import { createStore, combineReducers } from 'redux'
 import { Provider } from 'react-redux'
 import { StaticQuery, Link, graphql } from 'gatsby'
 
-import TicTacToeReducer from '../../components/TicTacToeGame/Reducer/TicTacToeReducer'
-import TestReducer from '../TestReducer'
-import MatchCenter from '../../components/MatchCenter/Reducer/MatchCenterReducer'
+import globalStore from './redux-store';
 
 import { Footer } from './Footer/Footer'
 import { rhythm } from '../../utils/typography'
-
-const appReducer = combineReducers({TicTacToeReducer, TestReducer, MatchCenter});
-
-const globalStore = createStore(appReducer);
 
 export default ({ children }) => (
   <StaticQuery

@@ -3,6 +3,8 @@ import { css } from 'react-emotion'
 import { connect } from 'react-redux'
 import { rhythm } from '../../utils/typography'
 
+import { generateBoard, updateField } from './actions/TicTacToeActions'
+
 import TicTacToeTile from './TicTacToeTile';
 
 const boardGen = (boardSize = 3) => {
@@ -40,6 +42,7 @@ class TicTactToeBoard extends React.Component {
               key={`${item.tileX} ${item.tileY}`}
               tileX={item.tileX}
               tileY={item.tileY}
+              value={item.value}
               updateField = {this.props.updateField.bind(this)}
             />
           ))}
@@ -58,16 +61,10 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     generateBoard: (board) => {
-      dispatch({
-        type: 'GENERATE_BOARD',
-        payload: board
-      })
+      dispatch(generateBoard(board))
     },
     updateField: (fieldRecord) => {
-      dispatch({
-        type: 'UPDATE_FIELD',
-        payload: fieldRecord
-      })
+      dispatch(updateField(fieldRecord))
     }
   }
 }

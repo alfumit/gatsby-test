@@ -4,6 +4,8 @@ import { css } from 'react-emotion'
 import { connect } from 'react-redux'
 import { rhythm } from '../../utils/typography'
 
+import { startGame, setBoardSize } from './actions/TicTacToeActions';
+
 const rnd = Math.floor(Math.random()*7);
 class Starter extends React.Component {
   render() {
@@ -27,7 +29,7 @@ class Starter extends React.Component {
             className={css`
           width: 100%;
           height: 300px;
-          background-color: rgba(200, 200, 200, 0.5);
+          background-color: black;
           background-image: url(${welcomeImage});
           background-size: cover;
           color: white;
@@ -63,17 +65,12 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     startGame: () => {
-      dispatch({
-        type: 'START_GAME',
-      })
+      dispatch(startGame())
     },
     chooseBoardSize: (event) => {
       const value = parseInt(event.target.value);
       if(value < 2 || value > 10) return;
-      dispatch({
-        type: 'SET_BOARD_SIZE',
-        payload: value
-      })
+      dispatch(setBoardSize(value))
     }
   }
 }

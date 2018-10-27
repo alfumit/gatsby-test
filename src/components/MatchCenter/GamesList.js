@@ -13,6 +13,7 @@ import apiToken from './footbalApiToken'
 class GamesList extends React.PureComponent {
   
   componentWillMount() {
+    //TODO: move out of component to reducer
     const myHeaders = new Headers();
     myHeaders.append('X-Auth-Token', apiToken)
     fetch('https://api.football-data.org/v2/matches', {

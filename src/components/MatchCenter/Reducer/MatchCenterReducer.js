@@ -1,3 +1,5 @@
+import apiToken from '../footbalApiToken'
+
 const initialState = {
   gamesOverview: true,
   gamePicked: false,
@@ -35,6 +37,16 @@ const reducer = (state = initialState, action) => {
         ...state,
         gamePicked: false
       }
+      break
+    case 'FETCH_PL_DATA_FULFILLED':
+      //TODO: return the list of gmaes
+      // const myHeaders = new Headers();
+      // myHeaders.append('X-Auth-Token', apiToken)
+      // fetch('https://api.football-data.org/v2/matches', {
+      //   headers: myHeaders
+      // }).then((res) => {
+      //   console.log(res);
+      // }
       break
   }
   return state

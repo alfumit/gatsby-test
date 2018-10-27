@@ -51,13 +51,17 @@ export default ({ children }) => (
                 </h3>
               </Link>
               <hr />
-              <ul>
+              <ul className={css`
+                list-style-type: none;
+              `}>
                 <li>
                   <Link to={'/redux-works/redux-page'}>General Redux Page</Link>
                 </li>
-
                 <li>
                   <Link to={'/redux-works/tic-tac-toe'}>Tic-Tac-Toe</Link>
+                </li>
+                <li>
+                  <Link to={'/redux-works/match-center'}>Match Center</Link>
                 </li>
               </ul>
               <div className={css`

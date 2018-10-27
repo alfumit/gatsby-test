@@ -19,12 +19,8 @@ const boardGen = (boardSize = 3) => {
 
 class TicTactToeBoard extends React.Component {
   
-  state = {
-    board: boardGen(this.props.boardSize)
-  }
-  
   componentWillMount() {
-    this.props.generateBoard(this.state.board);
+    this.props.generateBoard(boardGen(this.props.boardSize));
   }
   
   render() {
@@ -37,12 +33,13 @@ class TicTactToeBoard extends React.Component {
         display: table;
         margin: ${rhythm(1)} auto;
         `}>
-          {this.state.board.map((item) => (
+          {this.props.board.map((item) => (
             <TicTacToeTile
               key={`${item.tileX} ${item.tileY}`}
               tileX={item.tileX}
               tileY={item.tileY}
               value={item.value}
+              player={this.props.currentPlayer}
               updateField = {this.props.updateField.bind(this)}
             />
           ))}
@@ -54,7 +51,9 @@ class TicTactToeBoard extends React.Component {
 
 const mapStateToProps = state => {
   return {
-    boardSize: state.TicTacToeReducer.boardSize
+    boardSize: state.TicTacToeReducer.boardSize,
+    board: state.TicTacToeReducer.crissCrossField,
+    currentPlayer: state.TicTacToeReducer.currentPlayer
   }
 }
 

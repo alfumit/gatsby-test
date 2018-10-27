@@ -1,48 +1,39 @@
 import React from 'react'
 import { css } from 'emotion'
 
-import { connect } from 'react-redux'
-
-class TicTacToeTile extends React.Component {
-  state = {
-    value: ''
+const markTile = (tileX, tileY, value, player, updateField) => {
+  if (value) {
+    console.log('Tile taken')
+    return
   }
-  
-  markTile() {
-    if(this.state.value) {
-      console.log('Tile taken');
-      return;
-    }
-    
-    this.setState({value: this.props.currentPlayer})
-    this.props.updateField({tileX: this.props.tileX, tileY: this.props.tileY, value: this.props.currentPlayer})
-  }
-  
-  render() {
-    const { tileX } = this.props;
-    return (
-      <li onClick={() => this.markTile()} className={css`
-      float: left;
-      clear: ${(tileX === 0) ? 'both' : 'none'};
-      width: 50px;
-      height: 50px;
-      border: 1px solid black;
-      text-align: center;
-      vertical-align: middle;
-      margin: 0;
-      `}>
-        <span className={css`
-        display: block;
-        margin-top: 10px`}>{this.state.value}</span>
-      </li>
-    )
-  }
+  updateField({ tileX: tileX, tileY: tileY, value: player })
 }
 
-const mapStateToProps = (state) => {
-  return {
-    currentPlayer: state.TicTacToeReducer.currentPlayer
-  }
+const TicTacToeTile = props => {
+  const { tileX, tileY, value, player, updateField } = props
+  return (
+    <li
+      onClick={() => markTile(tileX, tileY, value, player, updateField)}
+      className={css`
+        float: left;
+        clear: ${tileX === 0 ? 'both' : 'none'};
+        width: 50px;
+        height: 50px;
+        border: 1px solid black;
+        text-align: center;
+        vertical-align: middle;
+        margin: 0;
+      `}
+    >
+      <span
+        className={css`
+          display: block;
+          margin-top: 10px;
+        `}
+      >
+        {value}
+      </span>
+    </li>
+  )
 }
-
-export default connect(mapStateToProps)(TicTacToeTile)
+export default TicTacToeTile;

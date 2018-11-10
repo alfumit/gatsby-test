@@ -63,6 +63,9 @@ export default ({ children }) => (
                 <li>
                   <Link to={'/redux-works/match-center'}>Match Center</Link>
                 </li>
+                <li>
+                  <Link to={'/redux-works/github-profile'}>Github Profile</Link>
+                </li>
               </ul>
               <div className={css`
                 width: 80%;

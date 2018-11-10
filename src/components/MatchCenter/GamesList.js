@@ -8,24 +8,18 @@ import Button from '@material-ui/core/Button'
 
 import { connect } from 'react-redux'
 
-import apiToken from './footbalApiToken'
+import { footballApi } from './footbalApiToken'
+import { fetchPLData } from './actions/MatchCenterAction'
 
 class GamesList extends React.PureComponent {
   
-  componentWillMount() {
-    //TODO: move out of component to reducer
-    const myHeaders = new Headers();
-    myHeaders.append('X-Auth-Token', apiToken)
-    fetch('https://api.football-data.org/v2/matches', {
-      headers: myHeaders
-    }).then((res) => {
-      console.log(res);
-    })
+  componentDidMount() {
+    this.props.fetchPlData();
   }
   render() {
     return (
       <div>
-        Games List {apiToken}
+        Games List { footballApi }
         <Grid container spacing={24}>
           {this.props.gamesList.map((item) =>
             (<Grid item xs={8} key={item.id}>
@@ -65,6 +59,9 @@ const mapDispatchToProps = dispatch => {
         type: 'PICK_GAME',
         payload: game.id
       })
+    },
+    fetchPlData: () => {
+      dispatch(fetchPLData());
     }
   }
 }

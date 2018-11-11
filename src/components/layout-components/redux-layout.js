@@ -1,10 +1,7 @@
 import React from 'react'
 import { css } from 'react-emotion'
 import { Helmet } from 'react-helmet'
-import { Provider } from 'react-redux'
 import { StaticQuery, Link, graphql } from 'gatsby'
-
-import globalStore from './redux-store';
 
 import { Footer } from './Footer/Footer'
 import { rhythm } from '../../utils/typography'
@@ -30,7 +27,6 @@ export default ({ children }) => (
             padding-top: ${rhythm(1.5)};
           `}
         >
-          <Provider store={globalStore}>
             <React.Fragment>
               <Helmet>
                 <meta charSet="utf-8" />
@@ -78,7 +74,6 @@ export default ({ children }) => (
               <Footer />
               <script src="https://checkout.stripe.com/checkout.js" />
             </React.Fragment>
-          </Provider>
         </div>
       )
     }}

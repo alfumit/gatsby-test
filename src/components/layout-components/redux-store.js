@@ -8,4 +8,4 @@ import MatchCenter from '../MatchCenter/Reducer/MatchCenterReducer'
 const appReducer = combineReducers({TicTacToeReducer, TestReducer, MatchCenter});
 
 const globalStore = createStore(appReducer, applyMiddleware(thunk, PromiseMiddleware()))
-export default globalStore
+export { globalStore }

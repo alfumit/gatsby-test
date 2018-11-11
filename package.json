@@ -44,6 +44,7 @@
   ],
   "license": "MIT",
   "scripts": {
+    "start": "gatsby serve",
     "build": "gatsby build",
     "develop": "gatsby develop",
     "format": "prettier --write '**/*.js'",
@@ -52,7 +53,8 @@
     "test:coverage": "jest --coverage",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
-    "gh-deploy": "gatsby build --prefix-paths && gh-pages -d public"
+    "gh-deploy": "gatsby build --prefix-paths && gh-pages -d public",
+    "heroku-postbuild": "gatsby build"
   },
   "devDependencies": {
     "@babel/core": "^7.0.0-rc.2",
